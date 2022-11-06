@@ -1,0 +1,38 @@
+version: '3.4'
+services:
+  prometheus:
+    image: prom/prometheus:v2.40.0-rc.0
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --log.level=error
+      - --storage.tsdb.path=/prometheus
+      - --web.console.libraries=/usr/share/prometheus/console_libraries
+      - --web.console.templates=/usr/share/prometheus/consoles
+      - --enable-feature=native-histograms
+      - --enable-feature=exemplar-storage
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-1-data:/prometheus
+    ports:
+      - 9090:9090
+  prometheus2:
+    image: prom/prometheus:v2.40.0-rc.0
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --log.level=error
+      - --storage.tsdb.path=/prometheus
+      - --web.console.libraries=/usr/share/prometheus/console_libraries
+      - --web.console.templates=/usr/share/prometheus/consoles
+      - --enable-feature=exemplar-storage
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-2-data:/prometheus
+    ports:
+      - 9091:9090
+  native-demo:
+    image: client_golang:v0.1
+    ports:
+      - 8080:8080
+volumes:
+  prometheus-1-data:
+  prometheus-2-data:
