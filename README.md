@@ -8,6 +8,5 @@ Download code and run
 
 ```
 git clone https://github.com/grafanafans/play-with-prometheus-native.git
-make build 
-make run
+docker-compose up -d
 ```
