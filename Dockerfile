@@ -1,4 +1,4 @@
 FROM alpine
-COPY ./app/client_golang /app/client_golang
+COPY ./app/native /app/native
 WORKDIR /app 
-ENTRYPOINT ["./client_golang"]
+ENTRYPOINT ["./native"]
