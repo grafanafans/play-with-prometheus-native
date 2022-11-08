@@ -35,7 +35,7 @@ services:
       - 8080:8080
     command: 
       - --native-factor=1.5
-      - --metrics-count=100
+      - --metrics-count=10
 volumes:
   prometheus-1-data:
   prometheus-2-data:
