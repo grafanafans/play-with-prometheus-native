@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   prometheus:
-    image: prom/prometheus:v2.40.0-rc.0
+    image: prom/prometheus:v2.40.0
     command:
       - --config.file=/etc/prometheus/prometheus.yml
       - --log.level=error
@@ -16,7 +16,7 @@ services:
     ports:
       - 9090:9090
   prometheus2:
-    image: prom/prometheus:v2.40.0-rc.0
+    image: prom/prometheus:v2.40.0
     command:
       - --config.file=/etc/prometheus/prometheus.yml
       - --log.level=error
@@ -33,6 +33,9 @@ services:
     image: client_golang:v0.1
     ports:
       - 8080:8080
+    command: 
+      - --native-factor=1.5
+      - --metrics-count=100
 volumes:
   prometheus-1-data:
   prometheus-2-data:
